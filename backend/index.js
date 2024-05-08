@@ -1,13 +1,17 @@
 const express = require('express');
 const cors = require('cors');
 const { on } = require('nodemon');
-
+const imageRouter = require('./routes/imageRoute');
+const postRouter = require('./routes/postRoute');
 const connectDB = require('./database/mongo');
 require('dotenv').config();// Load environment variables from .env file
  
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/images', imageRouter);
+app.use('/api/posts', postRouter);
 
 //routes
 app.get('/', (req, res) => {
