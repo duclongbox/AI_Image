@@ -17,10 +17,32 @@ const Posts = () => {
   const handleSubmit = () => {
 
   }
-  const handleChange = (e) => {
+  const handleChange = (e)  => setForm({ ...form, [e.target.name]: e.target.value });
+  const createImage = async () => {
+    if (form.prompt) {
+      try {
+        setgenerateImg(true);
+        const response = await fetch('http:locahost:3000/api/images', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            prompt: form.prompt,
+          }),
+        });
 
+        const data = await response.json();
+        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+      } catch (err) {
+        alert(err);
+      } finally {
+        setgenerateImg(false);
+      }
+    } else {
+      alert('Please provide proper prompt');
+    }
   }
-  const createImage = () => {}
   return (
     <section className='max-w-7x1 mx-auto'>
       <div>
@@ -29,7 +51,6 @@ const Posts = () => {
       </div>
       <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
         <div className='flex flex-col gap-5'>
-          <FormField labelName="name" type="text" name="name" placeholder="Long Hoang" value={form.name} handleChange={handleChange} />
           <FormField labelName="prompt" type="text" name="prompt" placeholder="Write something" value={form.prompt} handleChange={handleChange} />
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
             {

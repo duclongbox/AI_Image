@@ -6,7 +6,6 @@ const FormField = ({labelName,type,name,placeholder,value,handleChange,}) => {
       <div className="flex items-center gap-2 mb-2">
         {/* specify the id of the form field the label should be bound to  */}
         <lable for={name} className="block text-sm font-medium text-gray-900">{labelName}</lable>
-
       </div>
       <input
         type={type}
