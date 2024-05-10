@@ -16,15 +16,14 @@ const Posts = () => {
   const [loading,setLoading] = useState(false)
   
   const handleChange = (e)  => {
-    const value = e.target.value.trim(); // Trim leading/trailing spaces
-    setForm({ ...form, [e.target.name]: value });
+    setForm({ ...form, [e.target.name]: e.target.value });
     console.log(form.prompt)
   }
   const createImage = async () => {
     if (form.prompt) {
       try {
         setgenerateImg(true);
-        const response = await fetch('http://localhost:3000/api/images', {
+        const response = await fetch('http://localhost:3000/api/v1/images', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -50,11 +49,11 @@ const Posts = () => {
     <section className='max-w-7x1 mx-auto'>
       <div>
         <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
-        <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">Generate an imaginative image through DALL-E AI and share it with the community</p>
+        <p className="mt-2 text-[#222328] text-[14px] max-w-[500px]">Generate an imaginative image through DALL-E AI MODEL</p>
       </div>
-      <form className="mt-16 max-w-3xl">
+      <form className="mt-16 max-w-3xl" onSubmit={createImage}>
         <div className='flex flex-col gap-5'>
-          <FormField labelName="prompt" type="text" name="prompt" placeholder="Write something" value={form.prompt} handleChange={handleChange} />
+          <FormField labelName="prompt" type="text" name="prompt" placeholder="Write something" value={form.prompt} handleChange={handleChange}  />
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
             {
               form.photo ? (
