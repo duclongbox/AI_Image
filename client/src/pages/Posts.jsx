@@ -14,15 +14,17 @@ const Posts = () => {
   })
   const [generateImg,setgenerateImg] = useState(false)
   const [loading,setLoading] = useState(false)
-  const handleSubmit = () => {
-
+  
+  const handleChange = (e)  => {
+    const value = e.target.value.trim(); // Trim leading/trailing spaces
+    setForm({ ...form, [e.target.name]: value });
+    console.log(form.prompt)
   }
-  const handleChange = (e)  => setForm({ ...form, [e.target.name]: e.target.value });
   const createImage = async () => {
     if (form.prompt) {
       try {
         setgenerateImg(true);
-        const response = await fetch('http:locahost:3000/api/images', {
+        const response = await fetch('http://localhost:3000/api/images', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -33,6 +35,7 @@ const Posts = () => {
         });
 
         const data = await response.json();
+        console.log(data);
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (err) {
         alert(err);
@@ -49,7 +52,7 @@ const Posts = () => {
         <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
         <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">Generate an imaginative image through DALL-E AI and share it with the community</p>
       </div>
-      <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
+      <form className="mt-16 max-w-3xl">
         <div className='flex flex-col gap-5'>
           <FormField labelName="prompt" type="text" name="prompt" placeholder="Write something" value={form.prompt} handleChange={handleChange} />
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">

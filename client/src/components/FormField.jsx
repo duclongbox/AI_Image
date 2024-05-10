@@ -5,7 +5,7 @@ const FormField = ({labelName,type,name,placeholder,value,handleChange,}) => {
     <div>
       <div className="flex items-center gap-2 mb-2">
         {/* specify the id of the form field the label should be bound to  */}
-        <lable for={name} className="block text-sm font-medium text-gray-900">{labelName}</lable>
+        <label htmlFor={name} className="block text-sm font-medium text-gray-900">{labelName}</label>
       </div>
       <input
         type={type}
@@ -16,10 +16,8 @@ const FormField = ({labelName,type,name,placeholder,value,handleChange,}) => {
         value={value}
         onChange={handleChange}
         required
-    />
-      
+      />
     </div>
   )
 }
-
 export default FormField
