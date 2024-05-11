@@ -34,10 +34,10 @@ const Home = () => {
           {/* </div> */}
       </div>
       
-      <div className='mt-40'>
+      <div className='mt-20'>
           <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="DALL-E" className='w-full  object-cover rounded-lg'></img>
       </div> 
-      <div className='mt-40'>
+      <div className='mt-20'>
         <p className='col-span-12 col-start-1 text-left mx-auto max-l-xl'>
           Developers can now integrate DALL·E directly into their apps and products 
           through our API. More than 3 million people are already using DALL·E to extend their 
@@ -45,9 +45,9 @@ const Home = () => {
           can start building with this same technology in a matter of minutes.
         </p>
       </div>
-      <div className='mt-5'>
+      <div className='mt-20'>
         <h3 className="font-extrabold text-[#222328] text-[16px]">Built-in Moderation</h3>
-        <p className='col-span-12 col-start-1 text-left mx-auto max-l-xl'>
+        <p className='mt-10 col-span-12 col-start-1 text-left mx-auto max-l-xl'>
         Incorporating the trust & safety lessons we’ve learned while deploying DALL·E to 3 million
          artists and users worldwide, developers can ship with confidence knowing that built-in mitigations—like
         filters for hate symbols and gore—will handle the challenging aspects of moderation. As a part of OpenAI’s 

@@ -28,6 +28,7 @@ const Posts = () => {
           headers: {
             'Content-Type': 'application/json',
           },
+          // Convert the prompt to JSON and send it to the server
           body: JSON.stringify({
             prompt: form.prompt,
           }),
@@ -35,7 +36,7 @@ const Posts = () => {
 
         const data = await response.json();
         console.log(data);
-        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+        setForm({ ...form, photo: data.photo});
       } catch (err) {
         alert(err);
       } finally {
@@ -54,7 +55,7 @@ const Posts = () => {
       <form className="mt-16 max-w-3xl" onSubmit={createImage}>
         <div className='flex flex-col gap-5'>
           <FormField labelName="prompt" type="text" name="prompt" placeholder="Write something" value={form.prompt} handleChange={handleChange}  />
-          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
+          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 h-64 flex justify-center items-center">
             {
               form.photo ? (
                 <img src={form.photo} alt={form.prompt} className='w-full h-full object-contain'></img>
